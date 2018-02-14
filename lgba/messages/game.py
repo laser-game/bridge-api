@@ -1,10 +1,17 @@
 # coding=utf-8
+from lgba.messages.base import BaseGameMessage
 
-from .base import BaseMessage
 
-
-class GameStart(BaseMessage):
+class GameStart(BaseGameMessage):
     pass
 
 
-__all__ = ['GameStart']
+class GameConfiguration(BaseGameMessage):
+    pass
+    # TODO: define fields
+
+
+__all__ = [
+    'GameStart',
+    'GameConfiguration'
+]

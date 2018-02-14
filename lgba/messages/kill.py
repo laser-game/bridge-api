@@ -1,11 +1,10 @@
 # coding=utf-8
-from lgba.typing_ import GameIdentifier
-from .base import BaseMessage
-from ..typing_ import VestIndex
+from ..typing_ import GameIdentifier, VestIdentifier
+from .base import BaseGameMessage
 
 
-class Kill(BaseMessage):
-    def __init__(self, game_id: GameIdentifier, who: VestIndex, by_who: VestIndex, timestamp) -> None:
+class Kill(BaseGameMessage):
+    def __init__(self, game_id: GameIdentifier, who: VestIdentifier, by_who: VestIdentifier) -> None:
         super().__init__(game_id=game_id)
 
         self.who = who

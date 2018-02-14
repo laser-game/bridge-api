@@ -11,14 +11,12 @@ class BaseMessage(object):
     Base for messages used in message queue for laser game driver communication.
     """
     _timestamp = None  # type: datetime
-    _game_id = None  # type: GameIdentifier
     _message_id = None  # type: UUID # TODO: is it needed?
 
-    def __init__(self, game_id: GameIdentifier) -> None:
+    def __init__(self) -> None:
         super().__init__()
 
         self._timestamp = datetime.now()
-        self.game_id = game_id
         self._message_id = uuid4()
 
     def __str__(self):
@@ -44,4 +42,16 @@ class BaseMessage(object):
         return pickle.loads(content)
 
 
-__all__ = ['BaseMessage']
+class BaseGameMessage(BaseMessage):
+    """
+    Protocol message about game.
+    """
+    game_id = None  # type: GameIdentifier
+
+    def __init__(self, game_id: GameIdentifier):
+        super(BaseGameMessage, self).__init__()
+
+        self.game_id = game_id
+
+
+__all__ = ['BaseMessage', 'BaseGameMessage']
