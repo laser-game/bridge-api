@@ -1,6 +1,7 @@
 # coding=utf-8
 import pickle
 from datetime import datetime
+from uuid import UUID, uuid4
 
 from ..typing_ import GameIdentifier
 
@@ -11,12 +12,14 @@ class BaseMessage(object):
     """
     _timestamp = None  # type: datetime
     _game_id = None  # type: GameIdentifier
+    _message_id = None  # type: UUID # TODO: is it needed?
 
-    def __init__(self, game_id: GameIdentifier, timestamp: datetime) -> None:
+    def __init__(self, game_id: GameIdentifier) -> None:
         super().__init__()
 
-        self._timestamp = timestamp
+        self._timestamp = datetime.now()
         self.game_id = game_id
+        self._message_id = uuid4()
 
     @property
     def timestamp(self) -> datetime:
