@@ -21,11 +21,22 @@ class BaseMessage(object):
         self.game_id = game_id
         self._message_id = uuid4()
 
+    def __str__(self):
+        keys = sorted(dir(self))
+        return '{}Message({})'.format(
+            self.__class__.__name__,
+            ', '.join(
+                '{}={}'.format(k, getattr(self, k, '-'))
+                for k in keys
+                if '__' not in k and not callable(getattr(self, k)) and k[1:] not in keys
+            )
+        )
+
     @property
     def timestamp(self) -> datetime:
         return self._timestamp
 
-    def serialize(self) -> bytes:
+    def serialize(self) -> str:
         return pickle.dumps(self)
 
     @staticmethod
