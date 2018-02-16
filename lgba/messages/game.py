@@ -11,6 +11,9 @@ class GameConfiguration(BaseGameMessage):
     # TODO: define fields
 
 
+class GameBreak(BaseGameMessage):
+    pass
+
 __all__ = [
     'GameStart',
     'GameConfiguration'

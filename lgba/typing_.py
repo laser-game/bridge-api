@@ -2,4 +2,4 @@
 from uuid import UUID
 
 GameIdentifier = UUID
-VestIdentifier = UUID
+VestIndex = int
